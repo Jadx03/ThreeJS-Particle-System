@@ -1,0 +1,23 @@
+{
+  "name": "threejs-particle-system",
+  "version": "0.0.0",
+  "description": "A Particle System built w/ ThreeJS for CS498 Project at UKY",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CS498-Team-B/ThreeJS-Particle-System.git"
+  },
+  "author": "Brennen Green, [ ADD NAMES HERE ]",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/CS498-Team-B/ThreeJS-Particle-System/issues"
+  },
+  "homepage": "https://github.com/CS498-Team-B/ThreeJS-Particle-System#readme",
+  "dependencies": {
+    "three": "^0.137.5"
+  }
+}
