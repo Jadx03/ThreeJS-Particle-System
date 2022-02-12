@@ -3,12 +3,29 @@
  * 
  * This file contains all the interaction with ThreeJS
  */
+
+// ThreeJS
 let camera, scene, renderer, clock, cube;
+
+// DatGUI
+let gui;
+// DatGUI Folders
+let animation;
+// DatGUI Settings
+let anim = {
+    speed: 1.0,
+};
 
 init();
 animate();
 
-function init() {
+function init_gui() {
+    gui = new dat.GUI({name: 'Particle Controls'});
+    animation = gui.addFolder('Animation Settings');
+    animation.add(anim, "speed", 0.0, 10.0, 0.05);
+}
+
+function init_three() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
@@ -30,6 +47,11 @@ function init() {
     window.addEventListener( 'resize', onWindowResize );
 }
 
+function init() {
+    init_gui();
+    init_three();
+}
+
 /**
  *  animate() - Calls each individual animation frame and renders it.
  */
@@ -45,8 +67,8 @@ function animate() {
  * render() - Manipulates the scene property for the current render frame
  */
 function render() {
-    cube.position.y = Math.cos(1 + clock.getElapsedTime());
-    cube.position.x = Math.sin(1 + clock.getElapsedTime());
+    cube.position.y = Math.cos(clock.getElapsedTime()*anim.speed);
+    cube.position.x = Math.sin(clock.getElapsedTime()*anim.speed);
 
 
     cube.rotation.x += 0.01;
