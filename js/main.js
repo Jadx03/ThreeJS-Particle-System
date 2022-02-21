@@ -4,6 +4,9 @@
  * This file contains all the interaction with ThreeJS
  */
 
+// Particle Engine!
+let engine;
+
 // ThreeJS
 let camera, scene, renderer, clock, cube;
 
@@ -26,6 +29,8 @@ function init_gui() {
 }
 
 function init_three() {
+    engine = new ParticleEngine(); // Doesn't do much yet
+
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
