@@ -43,7 +43,7 @@ class Particle {
         // so we need to clone it before multiplying it.
         // DM Me if you have any questions.
         this.position.add(this.velocity.clone().multiplyScalar(dt)); 
-        this.position.add(this.acceleration.clone().multiplyScalar(dt)); 
+        this.velocity.add(this.acceleration.clone().multiplyScalar(dt)); 
 
         this.remaining -= dt;
         if (remining <= 0.0) {
