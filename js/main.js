@@ -17,7 +17,12 @@ let animation;
 // DatGUI Settings
 let anim = {
     speed: 1.0,
+    scale: 1.0,
+    color: 0xFFFF00,
+    wireframe: false,
+    
 };
+
 
 init();
 animate();
@@ -26,6 +31,9 @@ function init_gui() {
     gui = new dat.GUI({name: 'Particle Controls'});
     animation = gui.addFolder('Animation Settings');
     animation.add(anim, "speed", 0.0, 10.0, 0.05);
+    animation.add(anim, "scale", 0.0, 3.0, 0.25);
+    animation.addColor(anim, 'color');
+    animation.add(anim, 'wireframe');
 }
 
 function init_three() {
@@ -34,7 +42,6 @@ function init_three() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-
     clock = new THREE.Clock(true); // Will autostart
 
     renderer = new THREE.WebGLRenderer();
@@ -42,7 +49,7 @@ function init_three() {
     document.body.appendChild( renderer.domElement );
 
     const geometry = new THREE.SphereGeometry();
-    const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+    const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
     cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
 
@@ -75,6 +82,11 @@ function render() {
     cube.position.y = Math.cos(clock.getElapsedTime()*anim.speed);
     cube.position.x = Math.sin(clock.getElapsedTime()*anim.speed);
 
+    cube.scale.set(anim.scale, anim.scale, anim.scale);
+    
+    cube.material.color.setHex(anim.color);
+
+    cube.material.wireframe = (anim.wireframe);
 
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
