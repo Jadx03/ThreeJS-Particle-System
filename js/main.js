@@ -41,11 +41,27 @@ function init_three() {
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
 
-    const geometry = new THREE.SphereGeometry();
-    const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-    cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
+    // Particle Setup
+    const particleGeometry = new THREE.BufferGeometry;  // specify points
+    const particleMaterial = new THREE.PointsMaterial(
+        {
+            size: 0.005,
+            color: "lightblue",
+        }
+    );  
+    
+    const NR_PARTICLES = 3000; // number of particles
+    let positions = new Float32Array( NR_PARTICLES * 3 );  // array of particle positions
+    for(let i = 0; i < NR_PARTICLES * 3; i++)
+    {
+        positions[i] = 8 * ( Math.random() - 0.5 );   // randomize positions
+    }
 
+    // assign positions to particles
+    particleGeometry.setAttribute( "position", new THREE.BufferAttribute( positions, 3 ) );
+    const particleMesh = new THREE.Points( particleGeometry, particleMaterial ); // mesh
+    scene.add(particleMesh);
+    
     camera.position.z = 5;
     cube.position.z = -5;
 
@@ -91,23 +107,3 @@ function onWindowResize() {
 
     renderer.setSize( window.innerWidth, window.innerHeight );
 }
-
-// Particle Setup
-let particleGeometry = new THREE.BufferGeometry;  // specify points
-let particleMaterial = new THREE.PointsMaterial( {
-    size: 0.005,
-    color: "lightblue",
-} );  
-const SIZE           = 3000; // number of particles
-let positions        = new Float32Array( SIZE * 3 );  // array of particle positions
-
-for(let i = 0; i < SIZE * 3; i++)
-{
-    positions[i] = 8 * ( Math.random() - 0.5 );   // randomize positions
-}
-
-// assign positions to particles
-particleGeometry.setAttribute( "position", new THREE.BufferAttribute( positions, 3 ) );
-const particleMesh = new THREE.Points( particleGeometry, particleMaterial ); // mesh
-scene.add(particleMesh);
-
