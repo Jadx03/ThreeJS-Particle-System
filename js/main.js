@@ -30,6 +30,12 @@ function init_gui() {
 
 function init_three() {
     engine = new ParticleEngine(); // Doesn't do much yet
+    
+    clock = new THREE.Clock(true); // Will autostart
+
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -41,12 +47,6 @@ function init_three() {
     camera.position.set(0, -5, 50);
     controls.update();
     
-    clock = new THREE.Clock(true); // Will autostart
-
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
-
     // Particle Setup
     const particleGeometry = new THREE.BufferGeometry;  // specify points
     const particleMaterial = new THREE.PointsMaterial(
