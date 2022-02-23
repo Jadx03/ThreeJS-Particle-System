@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "A Particle System built w/ ThreeJS for CS498 Project at UKY",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "five-server . -p 8000"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CS498-Team-B/ThreeJS-Particle-System.git"
@@ -18,5 +20,8 @@
     "@types/dat.gui": "^0.7.7",
     "dat.gui": "^0.7.7",
     "three": "^0.137.5"
+  },
+  "devDependencies": {
+    "five-server": "^0.1.3"
   }
 }
