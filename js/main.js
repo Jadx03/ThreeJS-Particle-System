@@ -40,6 +40,7 @@ function init_three() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 1000 );
     controls = new THREE.ArcballControls(camera, renderer.domElement, scene);
+    controls.setGizmosVisible(false);
     controls.addEventListener('change', function () {
             renderer.render(scene, camera);
         }
@@ -47,16 +48,23 @@ function init_three() {
     camera.position.set(0, -5, 50);
     controls.update();
     
+    const starTexture = new THREE.TextureLoader().load("./textures/star.png");
+    starTexture.wrapS = THREE.RepeatWrapping;
+    starTexture.wrapT = THREE.RepeatWrapping;
+    starTexture.repeat.set(1, 1);
+
     // Particle Setup
     const particleGeometry = new THREE.BufferGeometry;  // specify points
     const particleMaterial = new THREE.PointsMaterial(
         {
-            size: 0.005,
-            color: "lightblue",
+            map: starTexture,
+            transparent: true,
+            size: 0.025,
+            color: "white",
         }
     );  
     
-    const NR_PARTICLES = 3000; // number of particles
+    const NR_PARTICLES = 10000; // number of particles
     let positions = new Float32Array( NR_PARTICLES * 3 );  // array of particle positions
     for(let i = 0; i < NR_PARTICLES * 3; i++)
     {
