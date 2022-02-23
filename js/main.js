@@ -33,7 +33,7 @@ function init_three() {
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 1000 );
-    controls = new ArcballControls(camera, renderer.domElement, scene);
+    controls = new THREE.ArcballControls(camera, renderer.domElement, scene);
     controls.addEventListener('change', function () {
             renderer.render(scene, camera);
         }
