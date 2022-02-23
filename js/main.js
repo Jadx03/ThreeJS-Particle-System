@@ -107,7 +107,7 @@ for(let i = 0; i < SIZE * 3; i++)
 }
 
 // assign positions to particles
-particleGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-const particleMesh = new THREE.Points(particleGeometry, particleMaterial); // mesh
+particleGeometry.setAttribute( "position", new THREE.BufferAttribute( positions, 3 ) );
+const particleMesh = new THREE.Points( particleGeometry, particleMaterial ); // mesh
 scene.add(particleMesh);
 
