@@ -75,7 +75,6 @@ function render() {
     cube.position.y = Math.cos(clock.getElapsedTime()*anim.speed);
     cube.position.x = Math.sin(clock.getElapsedTime()*anim.speed);
 
-
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
 }
@@ -92,3 +91,23 @@ function onWindowResize() {
 
     renderer.setSize( window.innerWidth, window.innerHeight );
 }
+
+// Particle Setup
+let particleGeometry = new THREE.BufferGeometry;  // specify points
+let particleMaterial = new THREE.PointsMaterial( {
+    size: 0.005,
+    color: "lightblue",
+} );  
+const SIZE           = 3000; // number of particles
+let positions        = new Float32Array( SIZE * 3 );  // array of particle positions
+
+for(let i = 0; i < SIZE * 3; i++)
+{
+    positions[i] = 8 * ( Math.random() - 0.5 );   // randomize positions
+}
+
+// assign positions to particles
+particleGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+const particleMesh = new THREE.Points(particleGeometry, particleMaterial); // mesh
+scene.add(particleMesh);
+
