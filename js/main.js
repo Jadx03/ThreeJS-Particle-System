@@ -63,8 +63,7 @@ function init_three() {
     scene.add(particleMesh);
     
     camera.position.z = 5;
-    cube.position.z = -5;
-
+    
     window.addEventListener( 'resize', onWindowResize );
 }
 
