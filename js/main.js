@@ -8,7 +8,7 @@
 let engine;
 
 // ThreeJS
-let camera, scene, renderer, clock, controls;
+let camera, scene, renderer, clock, cube;
 
 // DatGUI
 let gui;
@@ -38,11 +38,23 @@ function init_gui() {
 
 function init_three() {
     engine = new ParticleEngine(); // Doesn't do much yet
+
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
     clock = new THREE.Clock(true); // Will autostart
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
+
+    const geometry = new THREE.SphereGeometry();
+    const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+    cube = new THREE.Mesh( geometry, material );
+    scene.add( cube );
+
+    camera.position.z = 5;
+    cube.position.z = -5;
 
     window.addEventListener( 'resize', onWindowResize );
 }
@@ -67,7 +79,17 @@ function animate() {
  * render() - Manipulates the scene property for the current render frame
  */
 function render() {
+    cube.position.y = Math.cos(clock.getElapsedTime()*anim.speed);
+    cube.position.x = Math.sin(clock.getElapsedTime()*anim.speed);
 
+    cube.scale.set(anim.scale, anim.scale, anim.scale);
+    
+    cube.material.color.setHex(anim.color);
+
+    cube.material.wireframe = (anim.wireframe);
+
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
 }
 
 /**

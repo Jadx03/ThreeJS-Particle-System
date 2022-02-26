@@ -1,7 +1,7 @@
 # Web Based Particle System
 
 ## Authors
-Brennen Green, Austin Burnett, Jainam Dhruva, Jared Statter, Kevin Patel
+Brennen Green, Austin Burnett, Jainam Dhruva, Jared Statter, Keving Patel
 
 For our senior design project we decided to tackle a web based particles system utilizing ThreeJS.
 
